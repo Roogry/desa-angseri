@@ -61,3 +61,14 @@ html {
    font-size: 14px;
    line-height: 40px;
 }
+
+.filter-darken {
+   filter: brightness(0.5);
+}
+
+
+@media(max-width:994px) {
+   .filter-darken {
+      filter: brightness(0.3);
+   }
+}
