@@ -10,15 +10,19 @@ html {
    background-size: cover;
 }
 
-.masonry-item h2,
-.masonry-item a {
+.post-list h2,
+.post-list a {
    display: -webkit-box;
    -webkit-line-clamp: 1;
    -webkit-box-orient: vertical;
    overflow: hidden;
 }
 
-.masonry-item p {
+.post-list .liquid-lp-excerpt>*:not(:first-child) {
+   display: none;
+}
+
+.post-list .liquid-lp-excerpt p:first-child {
    display: -webkit-box;
    -webkit-line-clamp: 3;
    -webkit-box-orient: vertical;
