@@ -29789,6 +29789,7 @@ body.search .no-results .search-form input[type=submit] {
   }
 
   .blog-single-content.expanded {
+    min-height: 40vh;
     padding-left: calc(26%);
     padding-right: calc(26%);
     margin-right: calc(-26%);
