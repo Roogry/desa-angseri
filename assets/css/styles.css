@@ -18,13 +18,14 @@ html {
    overflow: hidden;
 }
 
-.post-list .liquid-lp-excerpt>*:not(:first-child) {
+.post-list .liquid-lp-excerpt * {
    display: none;
 }
 
-.post-list .liquid-lp-excerpt p:first-child {
+.post-list .liquid-lp-excerpt p {
+   text-align: left !important;
    display: -webkit-box;
-   -webkit-line-clamp: 3;
+   -webkit-line-clamp: 2;
    -webkit-box-orient: vertical;
    overflow: hidden;
 }
