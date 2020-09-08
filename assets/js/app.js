@@ -71,7 +71,7 @@ async function getPosts(limit, start) {
                         <h2 class="liquid-lp-title h4"><a href="berita.html?s=${post.slug}">${
                           post.title
                         }</a></h2>
-                        <time class="liquid-lp-date text-uppercase size-sm" datetime="2017-09-25">${formatDate(
+                        <time class="liquid-lp-date text-uppercase size-sm">${formatDate(
                           post.created_at
                         )}</time>
                      </header>
@@ -85,9 +85,9 @@ async function getPosts(limit, start) {
 
     $("#list-post").append(template);
     action = "inactive";
-    // $("#load-data").html('<p class="text-center">Done</p>');
+    $("#load-data").html('');
   } else {
-    // $("#load-data").html('<p class="text-center">Done</p>');
+    $("#load-data").html('');
   }
 }
 
