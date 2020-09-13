@@ -127,6 +127,7 @@ function getPost(slug) {
       }
     })
     .catch(function (e) {
+      window.location.href = "./";
       console.log(e);
     });
 }
