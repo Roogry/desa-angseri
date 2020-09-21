@@ -343,7 +343,6 @@ function drawItems() {
 function drawRegionAreas() {
   push();
 
-  beginShape();
   for (const areas of regionAreas) {
     if (areas.hex_color) {
       fill(areas.hex_color);
@@ -352,12 +351,13 @@ function drawRegionAreas() {
       fill(125, 125, 255, 128);
     }
 
+    beginShape();
     for (const it of areas.coordinate_list) {
       const pix = trainMap.latLngToPixel(it[1], it[0]);
       vertex(pix.x, pix.y);
     }
+    endShape(p5.CLOSE);
   }
-  endShape(p5.CLOSE);
 
   pop();
 }
