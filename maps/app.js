@@ -308,7 +308,6 @@ function drawItems() {
 function drawRegionAreas() {
   push();
 
-  beginShape();
   for (const areas of regionAreas) {
     if (areas.hex_color) {
       fill(areas.hex_color);
@@ -317,12 +316,29 @@ function drawRegionAreas() {
       fill(125, 125, 255, 128);
     }
 
+    beginShape();
     for (const it of areas.coordinate_list) {
       const pix = trainMap.latLngToPixel(it[1], it[0]);
       vertex(pix.x, pix.y);
     }
+    endShape(p5.CLOSE);
   }
-  endShape(p5.CLOSE);
 
   pop();
+}
+
+/* For collapsible tile*/
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function () {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
 }

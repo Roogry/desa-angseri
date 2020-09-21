@@ -38,6 +38,7 @@
 
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/modal.css" />
+  <link rel="stylesheet" href="css/expandable.css" />
 </head>
 
 <body>
@@ -57,10 +58,14 @@
           <p>Smart Village</p>
         </div>
       </div>
-      <hr />
-      <div id="banjarHierarchy"></div>
-      <hr />
-      <div id="catHierarchy"></div>
+      <hr>
+
+      <button type="button" class="collapsible active">Wilayah</button>
+      <div id="banjarHierarchy" class="content"></div>
+      <hr>
+
+      <button type="button" class="collapsible active">Kategori</button>
+      <div id="catHierarchy" class="content"></div>
 
       <div class="bottomPadder"></div>
     </div>
