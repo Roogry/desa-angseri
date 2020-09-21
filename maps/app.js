@@ -67,8 +67,6 @@ function refreshItemsToShow() {
 
     return false;
   });
-
-  console.log(categoryToShow);
 }
 
 function onclickCheckbox(params) {
@@ -91,7 +89,6 @@ function mouseClicked() {
     const _d = dist(mouseX, mouseY, it.drawn.x, it.drawn.y);
 
     if (_d <= it.drawn.hb) {
-      console.log(it);
       var modal = document.getElementById("myModal");
       // Get the <span> element that closes the modal
       var span = document.getElementsByClassName("close")[0];
@@ -184,7 +181,6 @@ function appendCheckbox(
   _cont.classList.add(`level${level}hierarchy`);
 
   if (showColorIndicator) {
-    console.log(text, showColorIndicator);
     var _colorInd = document.createElement("span");
     _colorInd.classList.add(`colorIndicator`);
     if (color) {
@@ -210,7 +206,6 @@ function createCheckboxes(
   showColorIndicator
 ) {
   if (uncategorized && uncategorized.id != null && uncategorized.name != null) {
-    console.log(uncategorized);
     appendCheckbox(
       uncategorized.id,
       uncategorized.name,
@@ -243,7 +238,6 @@ function createCheckboxes(
 }
 
 function onHamburgerClicked() {
-  console.log("aaa");
   showSidebar = !showSidebar;
 
   const _sidebar = document.getElementById("sidebarx");
@@ -373,7 +367,7 @@ var coll = document.getElementsByClassName("collapsible");
 var i;
 
 for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
+  coll[i].addEventListener("click", function () {
     this.classList.toggle("active");
     var content = this.nextElementSibling;
     if (content.style.display === "block") {
