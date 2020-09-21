@@ -159,7 +159,15 @@ function mouseClicked() {
   }
 }
 
-function appendCheckbox(id, text, level, subs, containerId, color) {
+function appendCheckbox(
+  id,
+  text,
+  level,
+  subs,
+  containerId,
+  color,
+  showColorIndicator
+) {
   var _cb = document.createElement("INPUT");
   _cb.setAttribute("type", "checkbox");
   _cb.setAttribute("id", id);
@@ -175,23 +183,32 @@ function appendCheckbox(id, text, level, subs, containerId, color) {
   _cont.appendChild(_label);
   _cont.classList.add(`level${level}hierarchy`);
 
-  var _colorInd = document.createElement("span");
-  _colorInd.classList.add(`colorIndicator`);
-  if (color) {
-    _colorInd.style["background-color"] = color;
-  } else {
-    _colorInd.style["background-color"] = defaultColor;
+  if (showColorIndicator) {
+    console.log(text, showColorIndicator);
+    var _colorInd = document.createElement("span");
+    _colorInd.classList.add(`colorIndicator`);
+    if (color) {
+      _colorInd.style["background-color"] = color;
+    } else {
+      _colorInd.style["background-color"] = defaultColor;
+    }
+    _cont.appendChild(_colorInd);
   }
-  _cont.appendChild(_colorInd);
 
   document.getElementById(containerId).appendChild(_cont);
 
   if (subs) {
-    createCheckboxes(level + 1, subs, "catHierarchy");
+    createCheckboxes(level + 1, subs, "catHierarchy", null, showColorIndicator);
   }
 }
 
-function createCheckboxes(level, cats, containerId, uncategorized) {
+function createCheckboxes(
+  level,
+  cats,
+  containerId,
+  uncategorized,
+  showColorIndicator
+) {
   if (uncategorized && uncategorized.id != null && uncategorized.name != null) {
     console.log(uncategorized);
     appendCheckbox(
@@ -199,7 +216,9 @@ function createCheckboxes(level, cats, containerId, uncategorized) {
       uncategorized.name,
       level,
       uncategorized.subs,
-      containerId
+      containerId,
+      undefined,
+      showColorIndicator
     );
 
     if (showAllCategoryDefault) categoryToShow.push(uncategorized.id);
@@ -208,7 +227,15 @@ function createCheckboxes(level, cats, containerId, uncategorized) {
     let _color;
     if (it.color) _color = it.color;
 
-    appendCheckbox(it.id, it.name, level, it.subs, containerId, _color);
+    appendCheckbox(
+      it.id,
+      it.name,
+      level,
+      it.subs,
+      containerId,
+      _color,
+      showColorIndicator
+    );
     if (showAllCategoryDefault) categoryToShow.push(it.id);
   }
 
@@ -242,17 +269,29 @@ async function preload() {
 
   const getBanjars = await fetch(baseUrl + "/sv-banjars");
   banjarAll = await getBanjars.json();
-  createCheckboxes(0, banjarAll, "banjarHierarchy", {
-    id: "tanpa-banjar",
-    name: "Tanpa Banjar",
-  });
+  createCheckboxes(
+    0,
+    banjarAll,
+    "banjarHierarchy",
+    {
+      id: "tanpa-banjar",
+      name: "Tanpa Banjar",
+    },
+    false
+  );
 
   const getHierarchy = await fetch(baseUrl + "/sv-categories/hierarchy");
   categoryHierarchy = await getHierarchy.json();
-  createCheckboxes(0, categoryHierarchy, "catHierarchy", {
-    id: "tanpa-kategori",
-    name: "Tanpa Kategori",
-  });
+  createCheckboxes(
+    0,
+    categoryHierarchy,
+    "catHierarchy",
+    {
+      id: "tanpa-kategori",
+      name: "Tanpa Kategori",
+    },
+    true
+  );
 
   isLoading = false;
   document.getElementById("loadingIndicator").classList.add("hideLoading");
