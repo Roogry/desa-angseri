@@ -47,13 +47,15 @@
 
   <div class="canvas_container"></div>
 
-  <div class="sidebarContainer" id="sidebarx">
-    <div class="sidebar">
+  <div class="sidebarContainer hideLoading" id="sidebarx">
+    <div class="sidebar scrollbar-styled">
       <div id="titlehead">
         <img id="logo-icon" alt="Desa Logo"
           src="https://storage.googleapis.com/svbaksos-ti.appspot.com/Angser_Lambang_61944aac59.JPG" />
-        <h2>Desa Angseri</h2>
-        <h3>Smart Village</h3>
+        <div class="sidebar-title">
+          <h4>Desa Angseri</h4>
+          <p>Smart Village</p>
+        </div>
       </div>
       <hr />
       <div id="banjarHierarchy"></div>
@@ -67,14 +69,21 @@
   <script src="utils.js"></script>
   <script src="app.js"></script>
 
-  <img id="hamburgerMenu" src="list.svg" alt="hamburger menu" />
+  <!-- <img  src="list.svg" alt="hamburger menu" /> -->
+  <div id="hamburgerMenu">
+    <span class="bars">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </span>
+  </div>
 
   <!-- The Modal -->
   <div id="myModal" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
       <span class="close">&times;</span>
-      <div id="modal-detail">Some text in the Modal..</div>
+      <div id="modal-detail" class="scrollbar-styled">Some text in the Modal..</div>
     </div>
   </div>
 </body>

@@ -117,8 +117,11 @@ function mouseClicked() {
         fullContent = md.render(it.description);
         // modalDetail.innerHTML = "";
         modalDetail.innerHTML = fullContent;
+
+        var hrEl = document.createElement("hr");
+        modalDetail.prepend(hrEl);
       } else {
-        modalDetail.innerHTML = "Belum ditambahkan deskripsi";
+        modalDetail.innerHTML = "";
       }
 
       var titleEl = document.createElement("h3");
@@ -126,28 +129,25 @@ function mouseClicked() {
 
       var kategoriEl = document.createElement("h6");
       if (it.category) {
-        kategoriEl.innerHTML = "<b>Kategori:</b> " + it.category.name;
+        kategoriEl.innerHTML = "<span>Kategori:</span> " + it.category.name;
       } else {
-        kategoriEl.innerHTML = "<b>Kategori:</b> Tanpa Kategori";
+        kategoriEl.innerHTML = "<span>Kategori:</span> Tanpa Kategori";
       }
 
       var banjarEl = document.createElement("h6");
       if (it.banjar) {
-        banjarEl.innerHTML = "<b>Banjar:</b> " + it.banjar.name;
+        banjarEl.innerHTML = "<span>Banjar:</span> " + it.banjar.name;
       } else {
-        banjarEl.innerHTML = "<b>Banjar:</b> Tanpa banjar";
+        banjarEl.innerHTML = "<span>Banjar:</span> Tanpa banjar";
       }
 
       var latlngEl = document.createElement("h6");
       if (it.lat && it.lng) {
-        latlngEl.innerHTML = "<b>Latlng:</b> " + it.lat + ", " + it.lng;
+        latlngEl.innerHTML = "<span>Latlng:</span> " + it.lat + ", " + it.lng;
       } else {
-        latlngEl.innerHTML = "<b>Latlng:</b> Belum ditambahkan";
+        latlngEl.innerHTML = "<span>Latlng:</span> Belum ditambahkan";
       }
 
-      var hrEl = document.createElement("hr");
-
-      modalDetail.prepend(hrEl);
       modalDetail.prepend(latlngEl);
       modalDetail.prepend(banjarEl);
       modalDetail.prepend(kategoriEl);
@@ -220,12 +220,10 @@ function onHamburgerClicked() {
   showSidebar = !showSidebar;
 
   const _sidebar = document.getElementById("sidebarx");
+  const _menuIcon = document.getElementById("hamburgerMenu");
 
-  if (showSidebar) {
-    _sidebar.classList.remove("hideLoading");
-  } else {
-    _sidebar.classList.add("hideLoading");
-  }
+  _sidebar.classList.toggle("hideLoading");
+  _menuIcon.classList.toggle("opened");
 }
 
 async function preload() {
