@@ -13,17 +13,18 @@
    display: block;
 }
 
-.collapsible:after {
-   content: "►";
+.collapsible::before {
+   content: "expand_less";
    /* Unicode character for "plus" sign (+) */
-   font-size: 13px;
+   font-family: 'Material Icons';
+   font-size: 25px;
    color: black;
    float: right;
    margin-left: 5px;
 }
 
-.active:after {
-   color: black;
-   content: "▼";
+.active::before {
+   content: "expand_more";
+   font-family: 'Material Icons';
    /* Unicode character for "minus" sign (-) */
 }
