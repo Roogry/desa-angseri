@@ -4,8 +4,6 @@ const baseUrl = "https://svbaksosti.herokuapp.com";
 
 const defaultColor = "#007bff";
 
-let showSidebar = true;
-
 let canvas;
 let width;
 let height;
@@ -68,7 +66,6 @@ function refreshItemsToShow() {
     return false;
   });
 
-  console.log(categoryToShow);
 }
 
 function onclickCheckbox(params) {
@@ -195,7 +192,6 @@ function appendCheckbox(id, text, level, subs, containerId, color) {
 
 function createCheckboxes(level, cats, containerId, uncategorized) {
   if (uncategorized && uncategorized.id != null && uncategorized.name != null) {
-    console.log(uncategorized);
     appendCheckbox(
       uncategorized.id,
       uncategorized.name,
@@ -215,17 +211,6 @@ function createCheckboxes(level, cats, containerId, uncategorized) {
   }
 
   refreshItemsToShow();
-}
-
-function onHamburgerClicked() {
-  console.log("aaa");
-  showSidebar = !showSidebar;
-
-  const _sidebar = document.getElementById("sidebarx");
-  const _menuIcon = document.getElementById("hamburgerMenu");
-
-  _sidebar.classList.toggle("hideLoading");
-  _menuIcon.classList.toggle("opened");
 }
 
 async function preload() {

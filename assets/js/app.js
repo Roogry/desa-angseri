@@ -68,9 +68,9 @@ async function getPosts(limit, start) {
                         </a>
                      </figure>
                      <header class="liquid-lp-header">
-                        <h2 class="liquid-lp-title h4"><a href="berita.html?s=${post.slug}">${
-                          post.title
-                        }</a></h2>
+                        <h2 class="liquid-lp-title h4"><a href="berita.html?s=${
+                          post.slug
+                        }">${post.title}</a></h2>
                         <time class="liquid-lp-date text-uppercase size-sm">${formatDate(
                           post.created_at
                         )}</time>
@@ -85,9 +85,9 @@ async function getPosts(limit, start) {
 
     $("#list-post").append(template);
     action = "inactive";
-    $("#load-data").html('');
+    $("#load-data").html("");
   } else {
-    $("#load-data").html('');
+    $("#load-data").html("");
   }
 }
 
@@ -108,7 +108,9 @@ function getPost(slug) {
       let fullContent = marked(post.content);
       $(".blog-single-content").html(fullContent);
       $("h1.entry-title").text(post.title);
-      $("span.author").text(`${post.created_by.firstname} ${post.created_by.lastname}`);
+      $("span.author").text(
+        `${post.created_by.firstname} ${post.created_by.lastname}`
+      );
       $("time.published").text(formatDate(post.created_at));
       $("div.thumbnail").css("background-image", `url(${imgUrl})`);
       $("a.thumbnail").attr("href", imgUrlBig);
@@ -123,11 +125,13 @@ function getPost(slug) {
       if (post.around.previous) {
         $(".nav-previous").removeClass("invisible");
         $(".nav-previous .nav-title").text(post.around.previous.title);
-        $("a#prev-link").attr("href", `berita.html?s=${post.around.previous.slug}`);
+        $("a#prev-link").attr(
+          "href",
+          `berita.html?s=${post.around.previous.slug}`
+        );
       }
     })
     .catch(function (e) {
       window.location.href = "./";
-      console.log(e);
     });
 }
