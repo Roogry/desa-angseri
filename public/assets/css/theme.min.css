@@ -21972,7 +21972,7 @@ body.search .no-results .search-form input[type=submit] {
     -webkit-box-direction: normal;
     flex-direction: column;
     -webkit-box-pack: center;
-    justify-content: center;
+    /* justify-content: center; */
     -webkit-transform: translate3d(25vw, 0, 0);
     transform: translate3d(25vw, 0, 0);
     opacity: 0;
