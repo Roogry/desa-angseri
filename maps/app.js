@@ -182,7 +182,9 @@ function appendCheckbox(id, text, level, subs, containerId, color) {
   } else {
     _colorInd.style["background-color"] = defaultColor;
   }
-  _cont.appendChild(_colorInd);
+  if (containerId != "banjarHierarchy") {
+    _cont.appendChild(_colorInd);
+  }
 
   document.getElementById(containerId).appendChild(_cont);
 
