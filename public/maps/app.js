@@ -1,6 +1,6 @@
 const mappa = new Mappa("Leaflet");
 
-const baseUrl = "https://svbaksosti.herokuapp.com";
+const baseUrl = "https://angseri.herokuapp.com";
 
 const defaultColor = "#007bff";
 
@@ -10,6 +10,8 @@ let height;
 
 let regionAreas;
 let categoryHierarchy;
+let categoryCounter = [];
+let banjarCounter = [];
 const showAllCategoryDefault = true;
 let categoryToShow = [];
 let itemsAll = [];
@@ -65,7 +67,6 @@ function refreshItemsToShow() {
 
     return false;
   });
-
 }
 
 function onclickCheckbox(params) {
@@ -88,7 +89,7 @@ function mouseClicked() {
     const _d = dist(mouseX, mouseY, it.drawn.x, it.drawn.y);
 
     if (_d <= it.drawn.hb) {
-      console.log(it);
+      // console.log(it);
       var modal = document.getElementById("myModal");
       // Get the <span> element that closes the modal
       var span = document.getElementsByClassName("close")[0];
@@ -172,6 +173,28 @@ function appendCheckbox(id, text, level, subs, containerId, color) {
   _cont.appendChild(_label);
   _cont.classList.add(`level${level}hierarchy`);
 
+  // Counternya
+  var _count = document.createElement("span");
+  if (id == "tanpa-kategori") {
+    console.log("aa1");
+    _count.innerText = " (" + categoryCounter["undefined"] + ")";
+  } else if (id == "tanpa-banjar") {
+    console.log("aa2");
+    _count.innerText = " (" + banjarCounter["undefined"] + ")";
+  } else if (Object.keys(categoryCounter).includes(id)) {
+    console.log("aa3");
+    _count.innerText = " (" + categoryCounter[id] + ")";
+  } else if (Object.keys(banjarCounter).includes(id)) {
+    console.log("aa4");
+    _count.innerText = " (" + banjarCounter[id] + ")";
+  } else {
+    console.log("aa5");
+    _cont.classList.add("line-through");
+    _label.classList.add("line-through");
+  }
+  _cont.appendChild(_count);
+
+  // Color Indikatornya
   var _colorInd = document.createElement("span");
   _colorInd.classList.add(`colorIndicator`);
   if (color) {
@@ -185,6 +208,7 @@ function appendCheckbox(id, text, level, subs, containerId, color) {
 
   document.getElementById(containerId).appendChild(_cont);
 
+  console.log({ id, text, containerId });
   if (subs) {
     createCheckboxes(level + 1, subs, "catHierarchy");
   }
@@ -225,15 +249,21 @@ async function preload() {
   const getItems = await fetch(baseUrl + "/sv-items");
   itemsAll = await getItems.json();
 
+  const getHierarchy = await fetch(
+    baseUrl + "/sv-categories/hierarchywithcount"
+  );
+  const getHierarchyJson = await getHierarchy.json();
+
   const getBanjars = await fetch(baseUrl + "/sv-banjars");
+  banjarCounter = await getHierarchyJson["banjars"];
   banjarAll = await getBanjars.json();
   createCheckboxes(0, banjarAll, "banjarHierarchy", {
     id: "tanpa-banjar",
     name: "Tanpa Banjar",
   });
 
-  const getHierarchy = await fetch(baseUrl + "/sv-categories/hierarchy");
-  categoryHierarchy = await getHierarchy.json();
+  categoryHierarchy = await getHierarchyJson["categories"];
+  categoryCounter = await getHierarchyJson["counter"];
   createCheckboxes(0, categoryHierarchy, "catHierarchy", {
     id: "tanpa-kategori",
     name: "Tanpa Kategori",
