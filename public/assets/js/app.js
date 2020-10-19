@@ -34,7 +34,7 @@ function stripHtml(html) {
 }
 
 async function getPosts(limit, start) {
-  let url = `https://svbaksosti.herokuapp.com/posts?_limit=${limit}&_start=${start}`;
+  let url = `https://angseri.herokuapp.com/posts?_limit=${limit}&_start=${start}`;
 
   if (action == "inactive") {
     action = "active";
@@ -92,7 +92,7 @@ async function getPosts(limit, start) {
 }
 
 function getPost(slug) {
-  let url = `https://svbaksosti.herokuapp.com/posts/${slug}`;
+  let url = `https://angseri.herokuapp.com/posts/${slug}`;
 
   fetch(url)
     .then((response) => response.json())
