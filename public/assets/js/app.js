@@ -34,7 +34,7 @@ function stripHtml(html) {
 }
 
 async function getPosts(limit, start) {
-  let url = `https://angseri.herokuapp.com/posts?_limit=${limit}&_start=${start}`;
+  let url = `https://angseri.herokuapp.com/posts?_sort=createdAt:DESC&_limit=${limit}&_start=${start}`;
 
   if (action == "inactive") {
     action = "active";
