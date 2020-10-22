@@ -34,8 +34,7 @@ function stripHtml(html) {
 }
 
 async function getPosts(limit, start) {
-  let url = `https://angseri.herokuapp.com/posts?_sort=createdAt:DESC&_limit=${limit}&_start=${start}`;
-  // let url = `http://localhost:1337/posts?_sort=createdAt:DESC&_limit=${limit}&_start=${start}`;
+  let url = `https://angseri.herokuapp.com/posts?_limit=${limit}&_start=${start}&_sort=createdAt:DESC`;
 
   if (action == "inactive") {
     action = "active";
@@ -91,7 +90,6 @@ async function getPosts(limit, start) {
     $("#load-data").html("");
   }
 }
-
 function getPost(slug) {
   let url = `https://angseri.herokuapp.com/posts/${slug}`;
 
@@ -99,7 +97,10 @@ function getPost(slug) {
     .then((response) => response.json())
     .then(function (post) {
       if (post.thumbnail) {
-        imgUrl = post.thumbnail.formats.small.url;
+        imgUrl =
+          post.thumbnail.formats.small != null
+            ? post.thumbnail.formats.small.url
+            : post.thumbnail.url;
         imgUrlBig = post.thumbnail.url;
       } else {
         imgUrl = defaultThumbnail;

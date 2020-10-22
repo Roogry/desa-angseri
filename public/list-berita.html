@@ -235,7 +235,6 @@
                               </div>
                            </article>
                         </div>
-
                         <div class="lqd-column col-md-4 col-sm-6 masonry-item">
                            <article class="liquid-lp mb-60">
                               <figure class="liquid-lp-media">
@@ -255,7 +254,6 @@
                               </div>
                            </article>
                         </div>
-
                         <div class="lqd-column col-md-4 col-sm-6 masonry-item">
                            <article class="liquid-lp mb-60">
                               <figure class="liquid-lp-media">
@@ -276,7 +274,6 @@
                               </div>
                            </article>
                         </div>
-
                         <div class="lqd-column col-md-4 col-sm-6 masonry-item">
                            <article class="liquid-lp mb-60">
                               <figure class="liquid-lp-media">
@@ -296,7 +293,6 @@
                               </div>
                            </article>
                         </div>
-
                         <div class="lqd-column col-md-4 col-sm-6 masonry-item">
                            <article class="liquid-lp mb-60">
                               <figure class="liquid-lp-media">
@@ -317,7 +313,6 @@
                               </div>
                            </article>
                         </div>
-
                         <div class="lqd-column col-md-4 col-sm-6 masonry-item">
                            <article class="liquid-lp mb-60">
                               <figure class="liquid-lp-media">
@@ -337,17 +332,6 @@
                               </div>
                            </article>
                         </div> -->
-                </div>
-
-                <div style="text-align: center">
-                  <button
-                    id="moreBerita"
-                    style="padding: 1em 3em 1em 3em"
-                    class="btn btn-primary"
-                    type="submit"
-                  >
-                    Lihat Lebih Banyak...
-                  </button>
                 </div>
 
                 <div id="load-data">
@@ -466,27 +450,17 @@
       var start = 0;
       getPosts(limit, start);
 
-      // $(window).scroll(function () {
-      //   if (postCount > start + limit) {
-      //     if (
-      //       $(window).scrollTop() + $(window).height() >
-      //       $("#list-post").height()
-      //     ) {
-      //       console.log("vvv", start, limit);
-      //       start = start + limit;
-      //       setTimeout(function () {
-      //         getPosts(limit, start);
-      //       }, 1000);
-      //     }
-      //   }
-      // });
-
-      $("#moreBerita").click(() => {
+      $(window).scroll(function () {
         if (postCount > start + limit) {
-          start = start + limit;
-          setTimeout(function () {
-            getPosts(limit, start);
-          }, 1000);
+          if (
+            $(window).scrollTop() + $(window).height() >
+            $("#list-post").height()
+          ) {
+            start = start + limit;
+            setTimeout(async function () {
+              await getPosts(limit, start);
+            }, 1000);
+          }
         }
       });
     </script>
