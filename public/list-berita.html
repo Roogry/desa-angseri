@@ -340,6 +340,25 @@
                   </span>
                 </div>
 
+                <div style="text-align: center;">
+                  <div style="text-align: center" class="btn btn-primary">
+                    <button
+                      id="moreBerita"
+                      style="padding: 1em 3em 1em 3em"
+                      type="submit"
+                    >
+                      <img
+                        style="display: inline"
+                        id="haLoading"
+                        src="assets/img/spinners/spinner-4-light.svg"
+                        alt=""
+                      />
+
+                      <span> Lihat Lebih Banyak... </span>
+                    </button>
+                  </div>
+                </div>
+
                 <!-- <div class="page-nav">
                         <nav aria-label="Page navigation">
                            <ul class="pagination">
@@ -448,21 +467,38 @@
     <script>
       var limit = 6;
       var start = 0;
-      getPosts(limit, start);
 
-      $(window).scroll(function () {
-        if (postCount > start + limit) {
-          if (
-            $(window).scrollTop() + $(window).height() >
-            $("#list-post").height()
-          ) {
-            start = start + limit;
-            setTimeout(async function () {
-              await getPosts(limit, start);
-            }, 1000);
-          }
-        }
+      async function loadNextPage() {
+        await getPosts(limit, start);
+        start = start + limit;
+      }
+
+      window.onload = function () {
+        console.log("Halo");
+        loadNextPage();
+      };
+
+      $("#moreBerita").click(() => {
+        loadNextPage();
       });
+
+      // console.log({ postCount, start, limit });
+      // getPosts(limit, start);
+
+      // $(window).scroll(function () {
+      //   console.log("scroll");
+      //   if (postCount > start + limit) {
+      //     if (
+      //       $(window).scrollTop() + $(window).height() >
+      //       $("#list-post").height()
+      //     ) {
+      //       setTimeout(async function () {
+      //         start = start + limit;
+      //         getPosts(limit, start);
+      //       }, 1000);
+      //     }
+      //   }
+      // });
     </script>
   </body>
 </html>

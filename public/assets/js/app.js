@@ -33,7 +33,10 @@ function stripHtml(html) {
   return temporalDivElement.textContent || temporalDivElement.innerText || "";
 }
 
+var totalShowedPost = 0;
 async function getPosts(limit, start) {
+  $("#haLoading").css("display", "inline");
+
   let url = `https://angseri.herokuapp.com/posts?_limit=${limit}&_start=${start}&_sort=createdAt:DESC`;
 
   if (action == "inactive") {
@@ -43,6 +46,7 @@ async function getPosts(limit, start) {
     const data = await responseObj.json();
 
     postCount = data.countTotal;
+    totalShowedPost += data.countQuery;
 
     let template = data.posts.map((post) => {
       let fullContent;
@@ -86,9 +90,15 @@ async function getPosts(limit, start) {
     $("#list-post").append(template);
     action = "inactive";
     $("#load-data").html("");
+
+    if (totalShowedPost >= data.countTotal) {
+      $("#moreBerita").css("display", "none");
+    }
   } else {
     $("#load-data").html("");
   }
+
+  $("#haLoading").css("display", "none");
 }
 function getPost(slug) {
   let url = `https://angseri.herokuapp.com/posts/${slug}`;
