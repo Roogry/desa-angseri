@@ -340,25 +340,29 @@
                   </span>
                 </div>
 
-                <div style="text-align: center;">
-                  <div style="text-align: center" class="btn btn-light tombolLoadMore">
-                    <button
-                      id="moreBerita"
-                      style="padding: 1em 3em 1em 3em"
-                      type="submit"
-                    >
+                <div
+                  id="moreBerita"
+                  class="lqd-column col-md-10 col-md-offset-1 text-center"
+                  data-custom-animations="true"
+                  style="cursor: pointer"
+                  data-ca-options='{"triggerHandler":"inview","animationTarget":"all-childs","duration":1200,"delay":100,"initValues":{"translateY":80,"opacity":0},"animations":{"translateY":0,"opacity":1}}'
+                >
+                  <span
+                    class="btn btn-solid bg-dark text-uppercase round btn-bordered border-thin font-size-14 font-weight-semibold"
+                  >
+                    <span>
                       <img
                         style="display: inline"
                         id="haLoading"
+                        width="40"
+                        height="40"
                         src="assets/img/spinners/spinner-4-light.svg"
                         alt=""
                       />
-
-                      <span> Lihat Lebih Banyak... </span>
-                    </button>
-                  </div>
+                      <span class="btn-txt">Lihat lebih banyak...</span>
+                    </span>
+                  </span>
                 </div>
-
                 <!-- <div class="page-nav">
                         <nav aria-label="Page navigation">
                            <ul class="pagination">

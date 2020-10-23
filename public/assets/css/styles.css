@@ -78,10 +78,6 @@ html {
    }
 }
 
-.tombolLoadMore {
-   border: 1px solid #6d6d6d;
-   color: #3a3a3a;
-}
-.tombolLoadMore img {
+#moreBerita img {
    padding-right: 1em;
 }
